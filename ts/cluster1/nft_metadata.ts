@@ -17,27 +17,40 @@ umi.use(signerIdentity(signer));
         // Follow this JSON structure
         // https://docs.metaplex.com/programs/token-metadata/changelog/v1.0#json-structure
 
-        // const image = ???
-        // const metadata = {
-        //     name: "?",
-        //     symbol: "?",
-        //     description: "?",
-        //     image: "?",
-        //     attributes: [
-        //         {trait_type: '?', value: '?'}
-        //     ],
-        //     properties: {
-        //         files: [
-        //             {
-        //                 type: "image/png",
-        //                 uri: "?"
-        //             },
-        //         ]
-        //     },
-        //     creators: []
-        // };
-        // const myUri = ???
-        // console.log("Your metadata URI: ", myUri);
+        const image = "JEFF THE DEV"
+        const metadata = {
+            name: "JEFF THE DEV",
+            symbol: "JEV",
+            description: "JEFF THE DEV SOLANA DEV ON THE BLOCKCHAIN",
+            image: "https://devnet.irys.xyz/HCcGZnU6A9aXYoZWJUoxYHGeTpty8FSfW7M6GpdqpjsC",
+            attributes: [
+                {trait_type: 'Eyes', value: 'Closed'},
+                {trait_type: 'Head', value: 'Beanie'},
+                {trait_type: 'Clothe', value: 'Hoodie'},
+                {trait_type: 'Background', value: 'Home'},
+                {trait_type: 'Mouth', value: 'Closed'}
+            ],
+            properties: {
+                files: [
+                    {
+                        type: "image/png",
+                        uri: "https://devnet.irys.xyz/HCcGZnU6A9aXYoZWJUoxYHGeTpty8FSfW7M6GpdqpjsC"
+                    },
+                ]
+            },
+            creators: [
+              {
+                address: keypair.publicKey,
+                share: 100,
+              },
+        
+        ],
+        };
+
+        const myUri = await umi.uploader.uploadJson(metadata);
+
+
+        console.log("Your metadata URI: ", myUri.replace("arweave.net", "devnet.irys.xyz"));
     }
     catch(error) {
         console.log("Oops.. Something went wrong", error);
